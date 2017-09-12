@@ -1,0 +1,10 @@
+C:\dev\CityApi\bin\Debug\netcoreapp2.0\CityApi.deps.json
+C:\dev\CityApi\bin\Debug\netcoreapp2.0\CityApi.runtimeconfig.json
+C:\dev\CityApi\bin\Debug\netcoreapp2.0\CityApi.runtimeconfig.dev.json
+C:\dev\CityApi\bin\Debug\netcoreapp2.0\CityApi.dll
+C:\dev\CityApi\bin\Debug\netcoreapp2.0\CityApi.pdb
+C:\dev\CityApi\obj\Debug\netcoreapp2.0\CityApi.csproj.CoreCompileInputs.cache
+C:\dev\CityApi\obj\Debug\netcoreapp2.0\CityApi.AssemblyInfoInputs.cache
+C:\dev\CityApi\obj\Debug\netcoreapp2.0\CityApi.AssemblyInfo.cs
+C:\dev\CityApi\obj\Debug\netcoreapp2.0\CityApi.dll
+C:\dev\CityApi\obj\Debug\netcoreapp2.0\CityApi.pdb
