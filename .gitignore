@@ -1,2 +1,3 @@
-/bin
-/obj
+## git ignore for asp.net core api
+bin
+obj
