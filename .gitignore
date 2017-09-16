@@ -1,6 +1,4 @@
 ## git ignore for asp.net core api
 
-.vscode
-
 bin
 obj
