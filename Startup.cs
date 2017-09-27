@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CityApi.Entities;
 using CityApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -35,6 +37,9 @@ namespace CityApi
 
 
             services.AddTransient<IMailService, MailService>();
+
+            var connectionString = "mongodb://localhost";
+            services.AddDbContext<CityInfoContext>(o => o.UseMongoDb(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
