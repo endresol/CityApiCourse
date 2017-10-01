@@ -38,8 +38,16 @@ namespace CityApi
 
             services.AddTransient<IMailService, MailService>();
 
-            var connectionString = "mongodb://localhost";
-            services.AddDbContext<CityInfoContext>(o => o.UseMongoDb(connectionString));
+            var sqlConnectionString = Configuration["ConnectionStrings:DataAccessMySqlProvider"];
+ 
+            services.AddDbContext<CityInfoContext>(options =>
+                options.UseMySql(
+                    sqlConnectionString,
+                    b => b.MigrationsAssembly("CityApi")
+                )
+            );
+
+            services.AddScoped<ICityInfoRepository, CityInfoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
