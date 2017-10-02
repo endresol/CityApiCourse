@@ -5,20 +5,24 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CityApi.Services
 {
-    class CityInfoRepository : ICityInfoRepository
+    public class CityInfoRepository : ICityInfoRepository
     {
         CityInfoContext _context;
 
+        public bool CityExists(int cityId)
+        {
+            return _context.Cities.Any(c => c.Id == cityId);
+        }
         public CityInfoRepository(CityInfoContext context)
         {
             _context = context;    
         }
-        IEnumerable<City> ICityInfoRepository.GetCities()
+        public IEnumerable<City> GetCities()
         {
             return _context.Cities.OrderBy(c => c.Name).ToList();
         }
 
-        City ICityInfoRepository.GetCity(int cityId, bool includePointsOfInterest)
+        public City GetCity(int cityId, bool includePointsOfInterest)
         {
             if (includePointsOfInterest) 
             {
@@ -28,15 +32,27 @@ namespace CityApi.Services
             return _context.Cities.Where(c => c.Id == cityId).FirstOrDefault();
         }
 
-        PointOfInterest ICityInfoRepository.GetPointOfInterest(int cityId, int pointOfInterestId)
+        public PointOfInterest GetPointOfInterest(int cityId, int pointOfInterestId)
         {
             return _context.PointsOfInterest
                 .Where( p => p.CityId == cityId && p.Id == pointOfInterestId).FirstOrDefault();
         }
 
-        IEnumerable<PointOfInterest> ICityInfoRepository.GetPointsOfInterest(int cityId)
+        public IEnumerable<PointOfInterest> GetPointsOfInterest(int cityId)
         {
             return _context.PointsOfInterest.Where(p => p.CityId == cityId).ToList();
+        }
+
+        public void AddPointOfInterestForCity(int cityId, PointOfInterest pointOfInterest)
+        {
+            var city = GetCity(cityId, false);
+            city.PointsOfInterest.Add(pointOfInterest);
+
+        }
+
+        public bool Save()
+        {
+            return (_context.SaveChanges() >= 0);
         }
     }
 }
